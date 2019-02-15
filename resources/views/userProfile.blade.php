@@ -10,11 +10,11 @@
                 <div class="card-body">
                         <dl>
                             <dt>ユーザーID</dt>
-                            <dd>{{$user->name}}</dd>
+                            <dd><div class="profbox">{{$user->name}}</div></dd>
                             <dt>名前</dt>
-                            <dd>{{$user->nickname}}</dd>
+                            <dd><div class="profbox">{{$user->nickname}}</div></dd>
                             <dt>自己紹介</dt>
-                            <dd>{{$user->profile}}</dd>
+                            <dd><div class="profboxbig">{{$user->profile}}</div></dd>
                         </dl>
 
                         @if ($user->id == Auth::id())

@@ -8689,3 +8689,22 @@ dd {
     text-align: left;
 }
 
+dd .profbox {
+    margin:10px; 
+    padding:10px; 
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    background-color:#fff;
+    border-radius: 0.25rem;
+    
+}
+
+dd .profboxbig {
+    margin:10px; 
+    padding:10px; 
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    background-color:#fff;
+    border-radius: 0.25rem;
+    
+}
