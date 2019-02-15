@@ -7,7 +7,7 @@
 
       @if(!empty($users))
       <div class="card">
-        <div class="card-header">ユーザ一覧</div>
+        <div class="card-header">Users list</div>
 
         @foreach ($users as $user)
 
@@ -31,7 +31,7 @@
               ?> 
 
               <form method="POST" action="/users/follow" accept-charset="UTF-8" id="formTweet" enctype="multipart/form-data"><input name="_token" type="hidden" value="SVi4OQVIUrtk4HpuOth11VWTY5WdtrQYmcp090Ta"> <input id="followId" name="followId" type="hidden" value="{{ $user->id }}">
-                <button type="submit" class="btn btn-light">フォローする
+                <button type="submit" class="btn btn-light">Follow
                 </button>
 
 
@@ -51,7 +51,7 @@
               <form method="POST" action="/users/unfollow" accept-charset="UTF-8" id="formTweet" enctype="multipart/form-data">
                 <input name="_token" type="hidden" value="SVi4OQVIUrtk4HpuOth11VWTY5WdtrQYmcp090Ta"> 
                 <input id="followId" name="followId" type="hidden" value="{{ $user->id }}">
-                <button type="submit" class="btn btn-light">フォロー中
+                <button type="submit" class="btn btn-light">UnFollow
                 </button>
 
                 @csrf

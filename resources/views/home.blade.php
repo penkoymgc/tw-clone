@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ Auth::user()->name }}さんのタイムライン</div>
+                <div class="card-header">Timeline</div>
 
                 @foreach ($tweets as $tweet)
 

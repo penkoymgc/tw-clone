@@ -5,21 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $user->name }}さんのプロフィール</div>
+                <div class="card-header">Profile</div>
 
                 <div class="card-body">
                         <dl>
-                            <dt>ユーザーID</dt>
+                            <dt>User ID</dt>
                             <dd><div class="profbox">{{$user->name}}</div></dd>
-                            <dt>名前</dt>
+                            <dt>Name</dt>
                             <dd><div class="profbox">{{$user->nickname}}</div></dd>
-                            <dt>自己紹介</dt>
+                            <dt>Bio</dt>
                             <dd><div class="profboxbig">{{$user->profile}}</div></dd>
                         </dl>
 
                         @if ($user->id == Auth::id())
 
-                        <button type="submit" class="btn btn-light"><a href="{{ url('/profile') }}">変更</a></button>
+                        <button type="submit" class="btn btn-light"><a href="{{ url('/profile') }}">Edit profile</a></button>
 
                         @endif
                         

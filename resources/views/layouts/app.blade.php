@@ -116,7 +116,7 @@
 
                             
                             <a class="navbar-brand" href="{{ route('user_list') }}" style="font-size:13px">
-                                 {{ __('ユーザ一覧') }}
+                                 {{ __('Users list') }}
                                  <!--  {{ config('app.name', 'Laravel') }}  -->
                            </a>   
                        </li>
@@ -147,21 +147,21 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#inline" class="inline btn btn-primary">ツイート</a>
+                    <a href="#inline" class="inline btn btn-primary">Tweet</a>
                     <?php  
                     // {{Html::link('#inline', __('ツイート'), ['class' => "inline btn btn-primary"])}}  ?>
                 </li>
 
                 <!-- <a href="#inline" class="inline">Show</a> -->
                 <div id="inline" style="display:none;" >
-                    <h4>ツイートする</h4>
+                    <h4>Compose new Tweet</h4>
 
 
                     <form method="POST" action="/tweet" accept-charset="UTF-8" id="formTweet" enctype="multipart/form-data">
                         @csrf
-                        <textarea name="tweet" placeholder="今なにしてる？" rows="4" cols="50" class="form-control"></textarea>
+                        <textarea name="tweet" placeholder="What's happening?" rows="4" cols="50" class="form-control"></textarea>
                         <button id="btnTweet" type="button" class="btn btn-primary" style="margin-top:10px;float:right;margin-bottom:10px">
-                            {{ __('ツイート') }}
+                            {{ __('Tweet') }}
                         </button>
                     </form>
 
