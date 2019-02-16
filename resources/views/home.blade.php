@@ -6,10 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Timeline</div>
-
                 @foreach ($tweets as $tweet)
 
                     <div class="card-body">
+                        
+
                         {{ $tweet->tweet }}
                         <br>
                         <div style="display:flex; justify-content: left;align-items: center;">
@@ -17,7 +18,9 @@
                                 <a href="{{ route('userProfile') }}?user_id={{$tweet->users->id}}">{{ $tweet->users->name }} </a>/ {{ $tweet->created_at }}
                             </div>
                             <div style="float:left" class="heart"></div>
+                            <div style="float:left;" ><a href="{{ route('tweetshow') }}?tweet_id={{$tweet->id}}"><div class="reply"></div></a></div>
                         </div>
+                    
                     </div>
 
                     <hr style="margin-top:0px; margin-bottom:0px">

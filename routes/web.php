@@ -17,21 +17,16 @@
 
 Auth::routes();
 
-//トップページ Homeコントローラー 
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-//ツイートを保存する Tweetコントローラー
-
 Route::post('/tweet','TweetController@update');
+Route::get('/tweet/show','TweetController@show')->name('tweetshow');
+Route::post('/tweet/reply','TweetController@reply');
 
-//ユーザー一覧 Userコントローラー
 
 Route::get('/users','UserController@index')->name('user_list');
 
-//フォローを実行する Userコントローラー
 
 Route::post('/users/follow','UserController@follow');
 

@@ -36,15 +36,14 @@ class Tweet extends Model
 
 		// $user = Auth::user();
 		// $MyTweets = self::where('user_id',$user->id)->get();
-	
+
 		// return $MyTweets;
 	}
 
-
-     public function users()
-     	{
-     		return $this->belongsTo('App\User','user_id','id');
-     	}
+	public function users()
+	{
+		return $this->belongsTo('App\User','user_id','id');
+	}
 }
 
 
