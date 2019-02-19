@@ -57,6 +57,16 @@ class TweetController extends Controller
         $newreply->text = $request->input('text');
         $newreply->save();
 
-        return redirect()->route('home');
+        //return redirect()->route('tweetshow');
+        return redirect("/tweet/show/?tweet_id=".$newreply->tweet_id);
+           
+    }
+
+    public function delete(Request $request)
+    {
+        
+        Tweet::destroy(['id' => $request->tweet_id]);
+
+        return redirect("home");
     }
 }

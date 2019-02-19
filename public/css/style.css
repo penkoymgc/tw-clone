@@ -4,7 +4,7 @@
 	background: url(../heart_image.png) no-repeat;
 	background-position: 0 0;
 	cursor: pointer;
-	background-size: 2900%;
+	background-size: cover;
 }
 .heart:hover {
 	background-position: -1120px 0;
@@ -19,6 +19,7 @@
 	background-position: 0 0;
 	cursor: pointer;
 	background-size: cover;
+
 }
 
 /*.reply:hover {
@@ -26,3 +27,13 @@
 	-webkit-transition: background 1s steps(28);
 	transition: background 1s steps(28);
 }*/
+
+
+.delete {
+	width: 17px;
+	height: 17px;
+	background: url(../delete_image.png) no-repeat;
+	background-position: 0 0;
+	cursor: pointer;
+	background-size: cover;
+}

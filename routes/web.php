@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet','TweetController@update');
 Route::get('/tweet/show','TweetController@show')->name('tweetshow');
 Route::post('/tweet/reply','TweetController@reply');
+Route::post('/tweet/delete','TweetController@delete')->name('tweetdelete');
 
 
 Route::get('/users','UserController@index')->name('user_list');

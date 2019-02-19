@@ -20,9 +20,9 @@ class Reply extends Model
     ];
 
 public function users()
-{
-	return $this->hasMany('App\User','user_id','id');
-}
+    {
+        return $this->belongsTo('App\User','user_id','id');
+    }
 
 public function tweets()
 {
