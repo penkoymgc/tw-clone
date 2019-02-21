@@ -22,6 +22,7 @@
 
                         <form action="/tweet/favorite" method="post">
                           <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                          <input type="hidden" name="nextpage" value="home">
                           <button type="submit" style="float:left" class="favorite"></button>
                           @csrf
                       </form>
@@ -30,7 +31,8 @@
 
                       <form action="/tweet/unfavorite" method="post">
                           <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                          <button type="submit" style="float:left" class="favorited"></button>
+                          <input type="hidden" name="nextpage" value="home">
+                          <button type="submit" style="float:left" class="unfavorited"></button>
                           @csrf
                       </form>
 

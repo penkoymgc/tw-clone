@@ -15,11 +15,25 @@
               {{ $tweets->users->nickname }} [<a href="{{ route('userProfile') }}?user_id={{$tweets->users->id}}">{{ $tweets->users->name }} </a>] / {{ $tweets->created_at }}
             </div>
 
+            @if (count($favtweet) == 0)
+
             <form action="/tweet/favorite" method="post">
               <input type="hidden" name="tweet_id" value="{{ $tweets->id }}">
+              <input type="hidden" name="nextpage" value="tweetshow">
               <button type="submit" style="float:left" class="favorite"></button>
               @csrf
             </form>
+
+            @else
+
+            <form action="/tweet/unfavorite" method="post">
+              <input type="hidden" name="tweet_id" value="{{ $tweets->id }}">
+              <input type="hidden" name="nextpage" value="tweetshow">
+              <button type="submit" style="float:left" class="unfavorited"></button>
+              @csrf
+            </form>
+
+            @endif
 
             @if($tweets->user_id == Auth::id())
 

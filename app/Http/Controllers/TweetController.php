@@ -47,7 +47,14 @@ class TweetController extends Controller
         $tweetId = $request->input('tweet_id');
         $reply = Reply::where('tweet_id',$tweetId)->get();
 
-        return view('tweetshow',['replies' => $reply,'tweets' => $tweet]);    
+        $favtweet = Favorite::where('tweet_id',$tweetId)->where('user_id',Auth::id())->get()->toArray();
+
+        return view('tweetshow',
+            [
+                'replies' => $reply,
+                'tweets' => $tweet,
+                'favtweet' => $favtweet,
+            ]);    
     }
 
     public function reply(Request $request)
@@ -79,17 +86,30 @@ class TweetController extends Controller
         $favorite->tweet_id = $request->input('tweet_id');
         $favorite->save();
 
-        return redirect()->route("home");
+        $nextpage = $request->input('nextpage');
+
+        if($nextpage == "tweetshow"){
+          return redirect("/tweet/show/?tweet_id=".$request->input('tweet_id'));
+        } else {
+            return redirect()->route($nextpage);
+        }
+
     }
 
-public function unfavorite (Request $request)
-  {
-   
-    $unfavorite = Favorite::where('user_id',Auth::id())->where('tweet_id',$request->tweet_id);
+    public function unfavorite (Request $request)
+    {
 
-    $unfavorite->delete(); 
- 
-    return redirect()->route('home');
-  }
+        $unfavorite = Favorite::where('user_id',Auth::id())->where('tweet_id',$request->tweet_id);
+
+        $unfavorite->delete(); 
+
+        $nextpage = $request->input('nextpage');
+
+        if($nextpage == "tweetshow"){
+          return redirect("/tweet/show/?tweet_id=".$request->input('tweet_id'));
+        } else {
+            return redirect()->route($nextpage);
+        }
+    }
 
 }
