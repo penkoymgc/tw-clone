@@ -80,6 +80,6 @@ class UserController extends Controller
         User::where('id',$request->id)
             ->update($newProf);
 
-    return redirect()->route('user_list');
+    return redirect("/userProfile?user_id=".Auth::id());
   }
 }

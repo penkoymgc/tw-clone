@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Tweet;
 use App\Reply;
+use App\Favorite;
 
 class TweetController extends Controller
 {
@@ -14,7 +15,7 @@ class TweetController extends Controller
     	$this->Tweet = new \App\Tweet;
     }
 
-    public function create (Request $request)
+    public function update (Request $request)
     {
     	// $tweet = Tweet::newTweet();
     	// $id = Auth::id();
@@ -59,14 +60,36 @@ class TweetController extends Controller
 
         //return redirect()->route('tweetshow');
         return redirect("/tweet/show/?tweet_id=".$newreply->tweet_id);
-           
+
     }
 
     public function delete(Request $request)
     {
-        
-        Tweet::destroy(['id' => $request->tweet_id]);
+        $deletetweet = Tweet::where('user_id',Auth::id())->where('id',$request->tweet_id);
 
-        return redirect("home");
+        $deletetweet->delete(); 
+
+        return redirect()->route('home');
     }
+
+    public function favorite(Request $request)
+    {
+        $favorite = new Favorite;
+        $favorite->user_id = Auth::id();
+        $favorite->tweet_id = $request->input('tweet_id');
+        $favorite->save();
+
+        return redirect()->route("home");
+    }
+
+public function unfavorite (Request $request)
+  {
+   
+    $unfavorite = Favorite::where('user_id',Auth::id())->where('tweet_id',$request->tweet_id);
+
+    $unfavorite->delete(); 
+ 
+    return redirect()->route('home');
+  }
+
 }

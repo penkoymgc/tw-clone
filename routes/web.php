@@ -24,16 +24,13 @@ Route::post('/tweet','TweetController@update');
 Route::get('/tweet/show','TweetController@show')->name('tweetshow');
 Route::post('/tweet/reply','TweetController@reply');
 Route::post('/tweet/delete','TweetController@delete')->name('tweetdelete');
-
+Route::post('/tweet/favorite','TweetController@favorite');
+Route::post('/tweet/unfavorite','TweetController@unfavorite');
 
 Route::get('/users','UserController@index')->name('user_list');
-
-
 Route::post('/users/follow','UserController@follow');
-
 Route::post('/users/unfollow','UserController@unfollow');
 
 Route::get('/profile','UserController@profile');
 Route::post('/profile/update','UserController@updateProf');
-
 Route::get('/userProfile','UserController@userProfile')->name('userProfile');

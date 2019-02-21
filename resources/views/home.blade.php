@@ -17,21 +17,46 @@
                         <div style="float:left">
                             {{ $tweet->users->nickname }} [<a href="{{ route('userProfile') }}?user_id={{$tweet->users->id}}">{{ $tweet->users->name }} </a>] / {{ $tweet->created_at }}
                         </div>
-                        <div style="float:left" class="heart"></div>
-                        <div style="float:left;" ><a href="{{ route('tweetshow') }}?tweet_id={{$tweet->id}}"><div class="reply"></div></a></div>
+
+                        @if( !isset( $favtweet[ $tweet->id ] ))
+
+                        <form action="/tweet/favorite" method="post">
+                          <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                          <button type="submit" style="float:left" class="favorite"></button>
+                          @csrf
+                      </form>
+
+                      @else
+
+                      <form action="/tweet/unfavorite" method="post">
+                          <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                          <button type="submit" style="float:left" class="favorited"></button>
+                          @csrf
+                      </form>
+
+                      @endif
+
+
+                      <a href="{{ route('tweetshow') }}?tweet_id={{$tweet->id}}">
+                        <div  style="float:left" class="reply"></div></a>
+
+                        @if($tweet->user_id == Auth::id())
 
                         <form action="/tweet/delete" method="post">
-                        <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                           <button type="submit" style="float:left" class="delete"></button></a>
-                                @csrf
-                            </form>
-                            </div>
+                            <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                            <button type="submit" style="float:left" class="delete"></button>
+                            @csrf
+                        </form>
 
-                       
-                        </div>
+                        @else
 
-                        <hr style="margin-top:0px; margin-bottom:0px">
-                        @endforeach
+                        @endif
+                    </div>
+
+                </div>
+
+                <hr style="margin-top:0px; margin-bottom:0px">
+                @endforeach
 
 
                 <!-- <div class="card-body">

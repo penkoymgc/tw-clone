@@ -29,9 +29,9 @@ class Tweet extends Model
 			$user_id_list[]= $value->follow_id;
 		}
 
-		//ツイートテーブルの中からログインしているユーザーとフォローしているユーザーのツイートを取得する
 		$tweet = Tweet::whereIn('user_id',$user_id_list)
 		->orderByRaw('tweets.created_at DESC')->get();
+		
 		return $tweet;
 
 		// $user = Auth::user();

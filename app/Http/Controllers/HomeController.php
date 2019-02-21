@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Tweet;
+use App\Favorite;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -22,10 +25,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $timeLine = Tweet::getTlTweet();
+        $timeline = Tweet::getTlTweet();
 
-        return view('home',['tweets' => $timeLine]);
+        $my_user = User::find( Auth::id() );
+        
+        $favtweet = [];
+        foreach ($my_user->favorites as $value) {
+          $favtweet[ $value->tweet_id ]  = '1';
+        }
+
+        return view('home',
+        [
+            'tweets' => $timeline,
+            'favtweet' => $favtweet,
+        ]);
     }
 }
