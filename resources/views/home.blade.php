@@ -38,9 +38,18 @@
 
                       @endif
 
+                      <span class="favoritescount">
+                            {{ $tweet->favorites->count() }}
+                      </span>
 
                       <a href="{{ route('tweetshow') }}?tweet_id={{$tweet->id}}">
                         <div  style="float:left" class="reply"></div></a>
+
+                   
+                        <span class="repliescount">
+                            {{ $tweet->replies->count() }}
+                        </span>
+                     
 
                         @if($tweet->user_id == Auth::id())
 

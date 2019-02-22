@@ -44,6 +44,16 @@ class Tweet extends Model
 	{
 		return $this->belongsTo('App\User','user_id','id');
 	}
+
+	public function replies()
+	{
+		return $this->hasMany('App\Reply','tweet_id','id');
+	}
+
+	public function favorites()
+	{
+		return $this->hasMany('App\Favorite','tweet_id','id');
+	}
 }
 
 
