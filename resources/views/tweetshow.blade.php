@@ -12,7 +12,7 @@
           <br>
           <div style="display:flex; justify-content: left;align-items: center;">
             <div style="float:left">
-              {{ $tweets->users->nickname }} [<a href="{{ route('userProfile') }}?user_id={{$tweets->users->id}}">{{ $tweets->users->name }} </a>] / {{ $tweets->created_at }}
+              {{ $tweets->users->nickname }} [<a href="{{ route('userProfile') }}?user_id={{$tweets->users->id}}"> {{ $tweets->users->name }} </a>] / {{ $tweets->created_at }}
             </div>
 
             @if (count($favtweet) == 0)
@@ -34,6 +34,10 @@
             </form>
 
             @endif
+
+            <span class="favoritescount">
+              {{ $tweets->favorites->count() }}
+            </span>
 
             @if($tweets->user_id == Auth::id())
 

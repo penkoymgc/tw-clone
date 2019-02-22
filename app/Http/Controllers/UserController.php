@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Follow;
+use App\Tweet;
+use App\Favorite;
 
 
 class UserController extends Controller
@@ -62,10 +64,16 @@ class UserController extends Controller
     $userId = $request->input('user_id');
     $userProfile = User::where('id',$userId)->first();
 
+    $usertweet = Tweet::where('user_id',$userId)->get();
+
+    $tweetId = $request->input('tweet_id');
+    $favtweet = Favorite::where('tweet_id',$tweetId)->where('user_id',Auth::id())->get()->toArray();
 
     return view('userProfile',
       [
         'user' => $userProfile,
+        'tweets' => $usertweet,
+        'favtweet' => $favtweet,
       ]);
   }
 

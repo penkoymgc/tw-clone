@@ -2,72 +2,72 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Timeline</div>
-                @foreach ($tweets as $tweet)
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Timeline</div>
+        @foreach ($tweets as $tweet)
 
-                <div class="card-body">
+        <div class="card-body">
 
 
-                    {{ $tweet->tweet }}
-                    <br>
-                    <div style="display:flex; justify-content: left;align-items: center;">
-                        <div style="float:left">
-                            {{ $tweet->users->nickname }} [<a href="{{ route('userProfile') }}?user_id={{$tweet->users->id}}">{{ $tweet->users->name }} </a>] / {{ $tweet->created_at }}
-                        </div>
+          {{ $tweet->tweet }}
+          <br>
+          <div style="display:flex; justify-content: left;align-items: center;">
+            <div style="float:left">
+              {{ $tweet->users->nickname }} [<a href="{{ route('userProfile') }}?user_id={{$tweet->users->id}}"> {{ $tweet->users->name }} </a>] / {{ $tweet->created_at }}
+            </div>
 
-                        @if( !isset( $favtweet[ $tweet->id ] ))
+            @if( !isset( $favtweet[ $tweet->id ] ))
 
-                        <form action="/tweet/favorite" method="post">
-                          <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                          <input type="hidden" name="nextpage" value="home">
-                          <button type="submit" style="float:left" class="favorite"></button>
-                          @csrf
-                      </form>
+            <form action="/tweet/favorite" method="post">
+              <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+              <input type="hidden" name="nextpage" value="home">
+              <button type="submit" style="float:left" class="favorite"></button>
+              @csrf
+            </form>
 
-                      @else
+            @else
 
-                      <form action="/tweet/unfavorite" method="post">
-                          <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                          <input type="hidden" name="nextpage" value="home">
-                          <button type="submit" style="float:left" class="unfavorited"></button>
-                          @csrf
-                      </form>
+            <form action="/tweet/unfavorite" method="post">
+              <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+              <input type="hidden" name="nextpage" value="home">
+              <button type="submit" style="float:left" class="unfavorited"></button>
+              @csrf
+            </form>
 
-                      @endif
+            @endif
 
-                      <span class="favoritescount">
-                            {{ $tweet->favorites->count() }}
-                      </span>
+            <span class="favoritescount">
+              {{ $tweet->favorites->count() }}
+            </span>
 
-                      <a href="{{ route('tweetshow') }}?tweet_id={{$tweet->id}}">
-                        <div  style="float:left" class="reply"></div></a>
+            <a href="{{ route('tweetshow') }}?tweet_id={{$tweet->id}}">
+              <div  style="float:left" class="reply"></div></a>
 
-                   
-                        <span class="repliescount">
-                            {{ $tweet->replies->count() }}
-                        </span>
-                     
 
-                        @if($tweet->user_id == Auth::id())
+              <span class="repliescount">
+                {{ $tweet->replies->count() }}
+              </span>
 
-                        <form action="/tweet/delete" method="post">
-                            <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                            <button type="submit" style="float:left" class="delete"></button>
-                            @csrf
-                        </form>
 
-                        @else
+              @if($tweet->user_id == Auth::id())
 
-                        @endif
-                    </div>
+              <form action="/tweet/delete" method="post">
+                <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                <button type="submit" style="float:left" class="delete"></button>
+                @csrf
+              </form>
 
-                </div>
+              @else
 
-                <hr style="margin-top:0px; margin-bottom:0px">
-                @endforeach
+              @endif
+            </div>
+
+          </div>
+
+          <hr style="margin-top:0px; margin-bottom:0px">
+          @endforeach
 
 
                 <!-- <div class="card-body">
@@ -78,12 +78,12 @@
                     @endif
 
                     You are logged in!
-                </div> -->
-            </div>
+                  </div> -->
+                </div>
 
-            <?php //{{ $tweets->links() }}?>
-            
-        </div>
-    </div>
-</div>
-@endsection
+                <?php //{{ $tweets->links() }}?>
+
+              </div>
+            </div>
+          </div>
+          @endsection
